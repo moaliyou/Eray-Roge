@@ -6,14 +6,18 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.Info
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.MaterialTheme.colorScheme
 import androidx.compose.material3.OutlinedButton
@@ -28,9 +32,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -62,6 +69,7 @@ fun GameScreen(
                 .padding(16.dp)
                 .wrapContentHeight()
         )
+        GameRuleLayout(modifier = modifier.fillMaxWidth())
     }
     if (gameUiState.isGameOver) {
         FinalScoreDialog(
@@ -213,6 +221,74 @@ fun GameStatus(
             style = MaterialTheme.typography.titleMedium,
             fontWeight = FontWeight.SemiBold,
             modifier = Modifier.padding(12.dp)
+        )
+    }
+}
+
+@Composable
+fun GameRuleLayout(
+    modifier: Modifier = Modifier
+) {
+    Card(
+        modifier = modifier,
+        colors = CardDefaults.cardColors(
+            colorScheme.secondaryContainer
+        )
+    ) {
+        Column(
+            modifier = modifier
+        ) {
+            Text(
+                text = stringResource(R.string.game_rule_title),
+                style = MaterialTheme.typography.titleMedium
+            )
+            Column(
+                verticalArrangement = Arrangement.spacedBy(4.dp),
+                modifier = Modifier
+                    .padding(
+                        horizontal = 8.dp,
+                        vertical = 8.dp
+                    )
+            ) {
+                GameRuleContent(gameRule = stringResource(R.string.game_rule_1))
+                GameRuleContent(gameRule = stringResource(R.string.game_rule_2))
+                GameRuleContent(gameRule = stringResource(R.string.game_rule_3))
+            }
+        }
+    }
+}
+
+
+
+@Composable
+fun GameRuleContent(
+    modifier: Modifier = Modifier,
+    gameRule: String
+) {
+    Row(
+        modifier = modifier,
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.spacedBy(8.dp)
+    ) {
+        val formattedGameRule = buildAnnotatedString {
+            withStyle(style = SpanStyle(fontWeight = FontWeight.SemiBold)) {
+                append(gameRule.split(" ")[0])
+            }
+            append(
+                gameRule.slice(
+                    gameRule.split(" ")[0].length until gameRule.length
+                )
+            )
+        }
+        Icon(
+            Icons.Outlined.Info,
+            contentDescription = gameRule,
+            modifier = Modifier
+                .size(16.dp)
+        )
+        Text(
+            text = formattedGameRule,
+            style = MaterialTheme.typography.bodyMedium
         )
     }
 }

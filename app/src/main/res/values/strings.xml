@@ -11,4 +11,9 @@
     <string name="play_again">Markale Ciyaar</string>
     <string name="enter_your_word">Geli erayga</string>
     <string name="wrong_guess">Isku day qaldan</string>
+    <string name="game_rule_title">Shuruucda Ciyaarta:</string>
+    <string name="game_rule_1">-10 dhibcood hadii aad qalado.</string>
+    <string name="game_rule_2">-4 dhibcood hadii aad iska gudbiso.</string>
+    <string name="game_rule_3">100 wixii ka yar waa guuldareysatay.</string>
+
 </resources>
