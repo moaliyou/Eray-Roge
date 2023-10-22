@@ -3,12 +3,12 @@
     <string name="word_counter">%d/10</string>
     <string name="game_description">Isku aadi xarfaha sare si aad usoo saarto erayga saxda ah.</string>
     <string name="game_score">Dhibcaha: %d</string>
-    <string name="submit_button">Hubi Erayga</string>
-    <string name="skip_button">Ka bood</string>
+    <string name="submit_button">Hubi erayga</string>
+    <string name="skip_button">Kabood</string>
     <string name="you_scored">\"Waxaa keentay: %d\"</string>
     <string name="congratulations">Hambalyo!</string>
     <string name="exit">Kabax</string>
-    <string name="play_again">Markale Ciyaar</string>
+    <string name="play_again">Dib u Ciyaar</string>
     <string name="enter_your_word">Geli erayga</string>
     <string name="wrong_guess">Isku day qaldan</string>
     <string name="game_rule_title">Shuruucda Ciyaarta:</string>
