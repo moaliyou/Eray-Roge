@@ -8,8 +8,10 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Info
 import androidx.compose.material3.AlertDialog
@@ -51,10 +53,14 @@ fun GameScreen(
     val gameUiState by gameViewModel.uiState.collectAsState()
     Column(
         modifier = modifier
+            .verticalScroll(rememberScrollState()),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
         GameStatus(
             score = gameUiState.score,
             modifier = modifier
+                .align(Alignment.Start)
         )
         GameLayout(
             onUserGuessChanged = { gameViewModel.updateUserGuess(it) },
