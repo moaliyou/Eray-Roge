@@ -26,36 +26,43 @@ class GameViewModel : ViewModel() {
         if (usedWords.size == MAX_NO_OF_WORDS) {
             _uiState.update { currentState ->
                 currentState.copy(
-                    isGuessedWordWrong = false,
-                    score = updatedScore,
-                    isGameOver = true
+                        isGuessedWordWrong = false,
+                        score = updatedScore,
+                        isGameOver = true
                 )
             }
         } else {
             _uiState.update { currentState ->
                 currentState.copy(
-                    isGuessedWordWrong = false,
-                    currentScrambledWord = pickRandomWordAndShuffle(),
-                    score = updatedScore,
-                    currentWordCount = currentState.currentWordCount.inc(),
+                        isGuessedWordWrong = false,
+                        currentScrambledWord = pickRandomWordAndShuffle(),
+                        score = updatedScore,
+                        currentWordCount = currentState.currentWordCount.inc(),
                 )
             }
         }
     }
 
     fun checkUserGuess() {
-        if (userGuess.equals(currentWord, ignoreCase = true)) {
-            // User's guess is correct, increase the score
-            // and call updateGameState() to prepare the game for next round
-            val updatedScore = _uiState.value.score.plus(SCORE_INCREASE)
-            updateGameState(updatedScore)
-        } else {
-            // User's guess is wrong, show an error
-            _uiState.update { currentState ->
-                currentState.copy(
-                    isGuessedWordWrong = true,
-                    currentWordCount = currentState.currentWordCount.inc(),
-                )
+        if (userGuess.isNotBlank() && userGuess.isNotEmpty()) {
+            val currentScore = _uiState.value.score
+            if (userGuess.equals(currentWord, ignoreCase = true)) {
+                // User's guess is correct, increase the score
+                // and call updateGameState() to prepare the game for next round
+                updateGameState(updatedScore = currentScore.plus(SCORE_INCREASE))
+            } else {
+                if (currentScore > 0) {
+                    updateGameState(
+                            updatedScore = currentScore.minus(WRONG_WORD_SCORE_DECREASE)
+                    )
+                }
+
+                // User's guess is wrong, show an error
+                _uiState.update { currentState ->
+                    currentState.copy(
+                            isGuessedWordWrong = true
+                    )
+                }
             }
         }
         // Reset user guess
@@ -75,11 +82,11 @@ class GameViewModel : ViewModel() {
     private fun pickRandomWordAndShuffle(): String {
         // Continue picking up a new random word until you get one that hasn't been used before
         currentWord = allWords.random()
-        if (usedWords.contains(currentWord)) {
-            return pickRandomWordAndShuffle()
+        return if (usedWords.contains(currentWord)) {
+            pickRandomWordAndShuffle()
         } else {
             usedWords.add(currentWord)
-            return shuffleCurrentWord(currentWord)
+            shuffleCurrentWord(currentWord)
         }
     }
 
@@ -87,7 +94,7 @@ class GameViewModel : ViewModel() {
         val tempWord = word.toCharArray()
         // Scramble the word
         tempWord.shuffle()
-        while (String(tempWord).equals(word)) {
+        while (String(tempWord) == word) {
             tempWord.shuffle()
         }
         return String(tempWord)
