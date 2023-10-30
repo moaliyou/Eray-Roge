@@ -3,6 +3,7 @@ package com.example.eray_roge
 const val MAX_NO_OF_WORDS = 10
 const val SCORE_INCREASE = 20
 const val WRONG_WORD_SCORE_DECREASE = 10
+const val SKIP_WORD_SCORE_DECREASE = 4
 
 val allWords = setOf(
     "arooryo",

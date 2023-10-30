@@ -70,7 +70,10 @@ class GameViewModel : ViewModel() {
     }
 
     fun skipWord() {
-        updateGameState(_uiState.value.score)
+        val currentScore = _uiState.value.score
+        if (currentScore > 0) {
+            updateGameState(currentScore.minus(SKIP_WORD_SCORE_DECREASE))
+        }
         // Reset user guess
         updateUserGuess("")
     }
