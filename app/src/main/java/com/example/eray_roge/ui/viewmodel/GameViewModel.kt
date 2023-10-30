@@ -1,9 +1,15 @@
-package com.example.eray_roge
+package com.example.eray_roge.ui.viewmodel
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
+import com.example.eray_roge.ui.state.GameUiState
+import com.example.eray_roge.data.local.MAX_NO_OF_WORDS
+import com.example.eray_roge.data.local.SCORE_INCREASE
+import com.example.eray_roge.data.local.SKIP_WORD_SCORE_DECREASE
+import com.example.eray_roge.data.local.WRONG_WORD_SCORE_DECREASE
+import com.example.eray_roge.data.local.allWords
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow

@@ -1,4 +1,4 @@
-package com.example.eray_roge
+package com.example.eray_roge.ui.screen
 
 import android.app.Activity
 import androidx.compose.foundation.layout.Arrangement
@@ -43,7 +43,10 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.eray_roge.R
+import com.example.eray_roge.ui.component.GameRuleLayout
 import com.example.eray_roge.ui.theme.ErayRogeTheme
+import com.example.eray_roge.ui.viewmodel.GameViewModel
 
 @Composable
 fun GameScreen(
@@ -230,41 +233,6 @@ fun GameStatus(
         )
     }
 }
-
-@Composable
-fun GameRuleLayout(
-    modifier: Modifier = Modifier
-) {
-    Card(
-        modifier = modifier,
-        colors = CardDefaults.cardColors(
-            colorScheme.secondaryContainer
-        )
-    ) {
-        Column(
-            modifier = modifier
-        ) {
-            Text(
-                text = stringResource(R.string.game_rule_title),
-                style = MaterialTheme.typography.titleMedium
-            )
-            Column(
-                verticalArrangement = Arrangement.spacedBy(4.dp),
-                modifier = Modifier
-                    .padding(
-                        horizontal = 8.dp,
-                        vertical = 8.dp
-                    )
-            ) {
-                GameRuleContent(gameRule = stringResource(R.string.game_rule_1))
-                GameRuleContent(gameRule = stringResource(R.string.game_rule_2))
-                GameRuleContent(gameRule = stringResource(R.string.game_rule_3))
-            }
-        }
-    }
-}
-
-
 
 @Composable
 fun GameRuleContent(

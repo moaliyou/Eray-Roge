@@ -1,4 +1,4 @@
-package com.example.eray_roge
+package com.example.eray_roge.ui.state
 
 data class GameUiState(
     val currentScrambledWord: String = "",

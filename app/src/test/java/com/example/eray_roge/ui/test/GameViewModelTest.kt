@@ -1,6 +1,6 @@
 package com.example.eray_roge.ui.test
 
-import com.example.eray_roge.GameViewModel
+import com.example.eray_roge.ui.viewmodel.GameViewModel
 import com.example.eray_roge.data.MAX_NO_OF_WORDS
 import com.example.eray_roge.data.SCORE_INCREASE
 import com.example.eray_roge.data.getUnscrambledWord

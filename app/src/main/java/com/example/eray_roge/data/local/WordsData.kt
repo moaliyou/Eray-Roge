@@ -1,4 +1,4 @@
-package com.example.eray_roge
+package com.example.eray_roge.data.local
 
 const val MAX_NO_OF_WORDS = 10
 const val SCORE_INCREASE = 20
